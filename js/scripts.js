@@ -1,5 +1,31 @@
-// Business Logic 
+// Business Logic for Scoreboard
+function ScoreBoard() {
+  this.userNames = [],
+  this.currentScore = 0
+}
 
+Player.prototype.scoreTally(roll) {
+  let rollvalue = getRandomInt();
+  let scoreArray = [];
+    if (rollvalue > 1) {
+      scoreArray.push(rollvalue);
+    } else {
+      alert("end of turn");
+    } 
+  return reduce(scoreArray); 
+}
+
+
+//Business Logic for Players
+function Player(name, roll, turnScore) {
+  this.name = name,
+  this.roll = roll,
+  this.turnScore = turnScore
+}
+
+Player.prototype.userName = function() {
+  return this.name;
+}
 
 
 
