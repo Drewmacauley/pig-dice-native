@@ -1,30 +1,48 @@
 // Business Logic for Scoreboard
 function ScoreBoard() {
-  this.userNames = [],
-  this.currentScore = 0
+  this.players = [];
+  this.currentScore = 0;
+  this.currentId = 0;
 }
 
-Player.prototype.scoreTally(roll) {
-  let rollvalue = getRandomInt();
-  let scoreArray = [];
-    if (rollvalue > 1) {
-      scoreArray.push(rollvalue);
-    } else {
-      alert("end of turn");
-    } 
-  return reduce(scoreArray); 
+
+ScoreBoard.prototype.addPlayer = function(player) {
+  player.id = this.assignId();
+  this.players.push(player);
+}
+
+ScoreBoard.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
+}
+
+ScoreBoard.prototype.addScore = function() {
+  return this.currentScore.scoreValue();
+//  return this.currentScore;
 }
 
 
 //Business Logic for Players
-function Player(name, roll, turnScore) {
-  this.name = name,
-  this.roll = roll,
-  this.turnScore = turnScore
+function Player(name, roll) {
+  this.name = name;
+  this.roll = roll;
+  //this.turnScore = turnScore
 }
 
 Player.prototype.userName = function() {
   return this.name;
+}
+
+Player.prototype.scoreValue = function(roll) {
+  let sum = 0;
+  let rollValue = getRandomInt();
+  let scoreArray = [];
+    if (this.roll > 1) {
+      scoreArray.push(rollValue);
+    } else {
+      alert("end of turn");
+    } 
+  return sum = sum + reduce(scoreArray); 
 }
 
 
@@ -39,3 +57,28 @@ function getRandomInt(min, max) {
 
 
 // User Interface Logic
+let scoreBoard = new ScoreBoard ();
+
+function displayPlayerNames(scoreBoardToDisplay) {
+  let playerList = $("#players");
+  let htmlForPlayerNames = "";
+  scoreBoardToDisplay.players.forEach(function(player) {
+    htmlForPlayerNames += "<div class='col-md-6'id=" + player.id + ">" + currentScore + "</div>";
+  });
+  playerList.html(htmlForPlayerNames);
+};
+
+$(document).ready(function() {
+ // attachPlayerListeners();
+  $("#form-user").submit(function(event) {
+    event.preventDefault();
+    const inputtedName = $("input#userName").val();
+
+    $("input#userName").val("");
+    let newPlayer = new Player(inputtedName);
+    scoreBoard.addPlayer(newPlayer);
+  });
+});
+
+
+//Co-authored-by: Diego Salazar <salazardiego343@gmail.com>
