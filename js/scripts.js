@@ -1,52 +1,61 @@
+// console.log(this)
 // Business Logic for Scoreboard
 function ScoreBoard() {
-  this.players = [],
- // this.currentScore = 0
-  this.currentId = 0
+  // this.players = []
+  this.player1 = new Player("", 0, 0, 0);
+  this.player2 = new Player("", 0, 0, 0);
 }
-
+//doc ready
+// let newGame = new ScoreBoard();
+// let firstDiceRoll = newGame.player1.diceRoll()
+function otherScoreBoard(player1, player2) {
+  this.player1 = player1;
+  this.player2 = player2;
+}
+//doc ready
+//let firstPlayer = new Player("name", etc...)
+//let secondPlayer = new Player("name", etc...)
+// let newGame = new otherScoreBoard(firstPlayer, secondPlayer)
+// let firstDiceRoll = newGame.player1.diceRoll()
 
 ScoreBoard.prototype.addPlayer = function(player) {
-  player.id = this.assignId();
+  //player.id = this.assignId();
+  //player.score = 
   this.players.push(player);
 }
 
-ScoreBoard.prototype.assignId = function() {
-  this.currentId += 1;
-  return this.currentId;
-}
 
 
 
 //Business Logic for Players
-function Player(name, roll) {
+function Player(name, rollValue, turnScore, playerScore) {
   this.name = name,
-  this.roll = roll
-  //this.turnScore = turnScore
+  this.rollValue = rollValue,
+  this.turnScore = turnScore,
+  this.playerScore = playerScore
 }
 
 Player.prototype.userName = function() {
   return this.name;
 }
 
-Player.prototype.addScore = function() {
-  return this.currentScore.scoreValue();
-//  return this.currentScore;
+Player.prototype.scoreTotal = function() {
+  return this.playerScore += this.turnScore;
 }
 
-Player.prototype.scoreValue = function() {
+Player.prototype.diceRoll = function() {
   let rollValue = getRandomInt();
   let scoreArray = [];
     if (rollValue > 1) {
       scoreArray.push(rollValue);
     } else {
-      alert("end of turn");
+      this.turnScore = 0;
     } 
-  return reduce(scoreArray); 
+  return this.turnScore += reduce(scoreArray); 
 }
 
 
-// Randomizer Logic
+// Random Integer Logic
 function getRandomInt(min, max) {
   min = Math.ceil(1);
   max = Math.floor(7);
@@ -54,6 +63,40 @@ function getRandomInt(min, max) {
 }
 
 
+
+//User Interface Logic
+
+$(document).ready(function() {
+  $("#form-one").submit(function(event) {
+    event.preventDefault();
+    const inputtedPlayerName = $("input#userName").val();
+    let newPlayer = new Player(inputtedPlayerName);
+    addPlayer(newPlayer);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // User Interface Logic
 let scoreBoard = new ScoreBoard ();
 
@@ -88,3 +131,4 @@ $(document).ready(function() {
 
 
 //Co-authored-by: Diego Salazar <salazardiego343@gmail.com>
+*/

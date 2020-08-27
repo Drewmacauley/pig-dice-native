@@ -15,8 +15,8 @@
     <br>
     <hr>
     <br>
-    <div class="row-1">
-      <div class="col-md-4">
+    <div class="row">
+      <div class="col-4">
         <form id="form-user">
           <label for="userName">Player Name</label>
           <input type="text" id="userName">
@@ -24,22 +24,30 @@
         </form>
       </div>
     </div>
-    <div class="row-2"> 
+    <div class="row"> 
       <ul id="players">
       </ul>
     </div>
-    <div class="row-3">
-      <div class="col-md-6">
+    <div class="row">
+      <div class="col-6">
+        <h2 id="player1">Player 1</h2> <!--add jQuery for player name-->
         <button type="submit" class="btn btn-secondary"
         id="roll">Roll</button>
         <button type="submit" class="btn btn-warning"
         id ="hold">Hold</button>
+        <div id="playerOneOutput">
+
+        </div>
       </div>  
-      <div class="col-md-6">
+      <div class="col-6">
+        <h2 id="player2">Player 2</h2> <!--add jQuery for player name-->
         <button type="submit" class="btn btn-secondary"
         id="roll">Roll</button>
         <button type="submit" class="btn btn-warning"
         id ="hold">Hold</button>
+        <div id="playerTwoOutput">
+          
+        </div>
       </div>  
     </div>
   </div>
