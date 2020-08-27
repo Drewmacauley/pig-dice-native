@@ -1,6 +1,6 @@
 # _Pig Dice_
 
-#### _Apllication for Pig Dice browser game, 08/26/20_
+#### _Application for Pig Dice browser game, 08/26/20_
 
 #### By _**Brian Harvey and Diego Salazar**_
 
